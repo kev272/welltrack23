@@ -1,9 +1,7 @@
 package com.kevin.welltrack23.viewmodel
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.kevin.welltrack23.model.User
 import com.kevin.welltrack23.repository.UserRepository
 import kotlinx.coroutines.launch

@@ -25,6 +25,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 import com.kevin.welltrack23.R
+import com.kevin.welltrack23.navigation.ROUT_ABOUT
+import com.kevin.welltrack23.navigation.ROUT_HOME
+import com.kevin.welltrack23.navigation.ROUT_PRODUCT_LIST
 import com.kevin.welltrack23.navigation.ROUT_UPLOAD_TASK
 import com.kevin.welltrack23.navigation.ROUT_VIEW_TASK
 import com.kevin.welltrack23.viewmodel.TaskViewModel
@@ -44,15 +47,16 @@ fun ViewTaskScreen(
 
 
     // Auto-slide carousel logic
-    val carouselImages = listOf(R.drawable.img_1, R.drawable.img_2, R.drawable.img_2)
+    val carouselImages = listOf(R.drawable.img_1, R.drawable.img_2, R.drawable.img_3)
     var currentImageIndex by remember { mutableStateOf(0) }
 
     LaunchedEffect(Unit) {
         while (true) {
-            delay(1000) // 1 second
+            delay(10000) // 1 second
             currentImageIndex = (currentImageIndex + 1) % carouselImages.size
         }
     }
+
 
     //End of carousellogic
 
@@ -66,7 +70,7 @@ fun ViewTaskScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.LightGray,
+                    containerColor = Color.Blue,
                     titleContentColor = Color.White,
                     navigationIconContentColor = Color.White
                 )
@@ -74,24 +78,28 @@ fun ViewTaskScreen(
         },
 
         bottomBar = {
-            NavigationBar(containerColor = Color.LightGray) {
+            NavigationBar(containerColor = Color.Blue) {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White) },
                     label = { Text("Home") },
                     selected = selectedIndex == 0,
-                    onClick = { selectedIndex = 0 }
+                    onClick = { selectedIndex = 0
+                    navController.navigate(ROUT_HOME)}
+
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
+                    icon = { Icon(Icons.Default.ThumbUp, contentDescription = "Trainer") },
                     label = { Text("Favorites") },
                     selected = selectedIndex == 1,
-                    onClick = { selectedIndex = 1 }
+                    onClick = { selectedIndex = 1
+                    navController.navigate(ROUT_ABOUT)}
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
                     label = { Text("Profile") },
                     selected = selectedIndex == 2,
-                    onClick = { selectedIndex = 2 }
+                    onClick = { selectedIndex = 2
+                    navController.navigate(ROUT_PRODUCT_LIST)}
                 )
             }
         },

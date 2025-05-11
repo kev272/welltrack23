@@ -43,6 +43,7 @@ import com.kevin.welltrack23.R
 import com.kevin.welltrack23.model.Product
 import com.kevin.welltrack23.navigation.ROUT_ADD_PRODUCT
 import com.kevin.welltrack23.navigation.ROUT_EDIT_PRODUCT
+import com.kevin.welltrack23.navigation.ROUT_HOME
 import com.kevin.welltrack23.navigation.ROUT_PRODUCT_LIST
 import com.kevin.welltrack23.navigation.editProductRoute
 
@@ -68,8 +69,12 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("Products", fontSize = 20.sp) },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                    title = { Text("Members", fontSize = 20.sp) },
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(
+                        containerColor = Color.Blue,
+                        titleContentColor = Color.White,
+                        navigationIconContentColor = Color.White,
+                        actionIconContentColor = Color.White),
                     actions = {
                         IconButton(onClick = { showMenu = true }) {
                             Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
@@ -86,7 +91,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("Add Product") },
+                                text = { Text("Add Member") },
                                 onClick = {
                                     navController.navigate(ROUT_ADD_PRODUCT)
                                     showMenu = false
@@ -104,7 +109,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 12.dp, vertical = 8.dp),
-                    placeholder = { Text("Search products...") },
+                    placeholder = { Text("Search for Members...") },
                     singleLine = true,
                     leadingIcon = {
                         Icon(
@@ -343,20 +348,21 @@ fun generateProductPDF(context: Context, product: Product) {
 @Composable
 fun BottomNavigationBar1(navController: NavController) {
     NavigationBar(
-        containerColor = Color(0xFFA2B9A2),
-        contentColor = Color.White
+        containerColor = Color(0xFF0922B0),
+        contentColor = Color.White,
+
     ) {
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
+            onClick = { navController.navigate(ROUT_HOME) },
+            icon = { Icon(Icons.Default.Home, contentDescription = "Product List", tint = Color.White) },
             label = { Text("Home") }
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product") },
-            label = { Text("Add") }
+            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product", tint = Color.White) },
+            label = { Text("Add",) }
         )
     }
 }

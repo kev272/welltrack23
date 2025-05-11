@@ -14,9 +14,11 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -36,6 +38,9 @@ import coil.compose.rememberAsyncImagePainter
 
 import com.kevin.welltrack23.R
 import com.kevin.welltrack23.model.Task
+import com.kevin.welltrack23.navigation.ROUT_ABOUT
+import com.kevin.welltrack23.navigation.ROUT_HOME
+import com.kevin.welltrack23.navigation.ROUT_PRODUCT_LIST
 import com.kevin.welltrack23.navigation.ROUT_VIEW_TASK
 import com.kevin.welltrack23.viewmodel.TaskViewModel
 import java.util.Calendar
@@ -70,12 +75,12 @@ fun UploadTaskScreen(
             TopAppBar(
                 title = { Text("Upload Task") },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back/nav */ }) {
+                    IconButton(onClick = { navController.navigate(ROUT_VIEW_TASK)}) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.LightGray,
+                    containerColor = Color.Blue,
                     titleContentColor = Color.White,
                     navigationIconContentColor = Color.White
                 )
@@ -92,15 +97,15 @@ fun UploadTaskScreen(
                     label = { Text("Home") },
                     selected = selectedIndex == 0,
                     onClick = { selectedIndex = 0
-                        //navController.navigate(ROUT_HOME)
+                       navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
+                    icon = { Icon(Icons.Default.ThumbUp, contentDescription = "Trainers") },
                     label = { Text("Favorites") },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
-                        // navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ABOUT)
                     }
                 )
                 NavigationBarItem(
@@ -108,7 +113,7 @@ fun UploadTaskScreen(
                     label = { Text("Profile") },
                     selected = selectedIndex == 2,
                     onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
+                         navController.navigate(ROUT_PRODUCT_LIST)
                     }
                 )
 
@@ -172,7 +177,7 @@ fun UploadTaskScreen(
 
                     // Start of Text Field with a dropdown
                     var mExpanded by remember { mutableStateOf(false) }
-                    val options = listOf("Cooking", "Washing", "Mopping")
+                    val options = listOf("Beginner", "Hard", "Advanced")
                     var mTextFieldSize by remember { mutableStateOf(Size.Zero)}
                     val icon = if (mExpanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown
 
@@ -285,27 +290,7 @@ fun UploadTaskScreen(
                         )
 
                     }
-                    Box(
-                        modifier = Modifier
-                            .size(200.dp)
-                            .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
-                            .clickable { imagePicker.launch("image/*") },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        if (imageUri != null) {
-                            Image(
-                                painter = rememberAsyncImagePainter(model = imageUri),
-                                contentDescription = "Selected Image",
-                                modifier = Modifier.fillMaxSize(),
-                                contentScale = ContentScale.Crop
-                            )
-                        } else {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Icon(painter = painterResource(R.drawable.image), contentDescription = "Pick Image")
-                                Text("Tap to pick image", color = Color.DarkGray)
-                            }
-                        }
-                    }
+
 
 
                     //End of a datefield

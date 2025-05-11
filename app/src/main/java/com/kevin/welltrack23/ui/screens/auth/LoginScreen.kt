@@ -29,7 +29,6 @@ import com.kevin.welltrack23.R
 import com.kevin.welltrack23.navigation.ROUT_ADD_PRODUCT
 import com.kevin.welltrack23.navigation.ROUT_PRODUCT_LIST
 import com.kevin.welltrack23.navigation.ROUT_REGISTER
-
 import com.kevin.welltrack23.viewmodel.AuthViewModel
 
 @Composable
@@ -75,7 +74,7 @@ fun LoginScreen(
             exit = fadeOut(animationSpec = tween(1000))
         ) {
             Text(
-                text = "Welcome Back!",
+                text = "Welcome To WellTrack23!",
                 fontSize = 40.sp,
                 fontFamily = FontFamily.Cursive
             )

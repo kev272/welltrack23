@@ -77,7 +77,7 @@ fun EditProductScreen(productId: Int?, navController: NavController, viewModel: 
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Add Product") },
+                            text = { Text("Add Member") },
                             onClick = {
                                 navController.navigate(ROUT_ADD_PRODUCT)
                                 showMenu = false
@@ -100,7 +100,7 @@ fun EditProductScreen(productId: Int?, navController: NavController, viewModel: 
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Product Name") },
+                    label = { Text(" Name") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -108,7 +108,7 @@ fun EditProductScreen(productId: Int?, navController: NavController, viewModel: 
                 OutlinedTextField(
                     value = price,
                     onValueChange = { price = it },
-                    label = { Text("Product Price") },
+                    label = { Text("Payment") },
                     keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -138,7 +138,7 @@ fun EditProductScreen(productId: Int?, navController: NavController, viewModel: 
                         val updatedPrice = price.toDoubleOrNull()
                         if (updatedPrice != null) {
                             viewModel.updateProduct(product.copy(name = name, price = updatedPrice, imagePath = imagePath))
-                            Toast.makeText(context, "Product Updated!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Membership Updated!", Toast.LENGTH_SHORT).show()
                             navController.popBackStack()
                         } else {
                             Toast.makeText(context, "Invalid price entered!", Toast.LENGTH_SHORT).show()
@@ -148,10 +148,10 @@ fun EditProductScreen(productId: Int?, navController: NavController, viewModel: 
                         .padding(start = 40.dp, end = 40.dp),
                     colors = ButtonDefaults.buttonColors(Color.Black)
                 ) {
-                    Text("Update Product")
+                    Text("Update Membership")
                 }
             } else {
-                Text(text = "Product not found", color = MaterialTheme.colorScheme.error)
+                Text(text = "Member not found", color = MaterialTheme.colorScheme.error)
                 Button(onClick = { navController.popBackStack() }) {
                     Text("Go Back")
                 }
@@ -171,7 +171,7 @@ fun BottomNavigationBar2(navController: NavController) {
             selected = false,
             onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
             icon = { Icon(Icons.Default.Menu, contentDescription = "Product List") },
-            label = { Text("Products") }
+            label = { Text("Members") }
         )
         NavigationBarItem(
             selected = false,

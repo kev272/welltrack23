@@ -188,7 +188,7 @@ fun RegisterScreen(
                 .height(50.dp)
                 .background(
                     brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0xFF00C6FF), Color(0xFF0072FF))
+                        colors = listOf(Color(0xFF0A2B81), Color(0xFF0072FF))
                     ),
                     shape = MaterialTheme.shapes.medium
                 ),

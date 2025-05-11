@@ -52,8 +52,8 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Add Product", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                title = { Text("Add Member", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(Color.Blue),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
@@ -68,14 +68,14 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                         onDismissRequest = { showMenu = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Product List") },
+                            text = { Text("List of Members") },
                             onClick = {
                                 navController.navigate(ROUT_PRODUCT_LIST)
                                 showMenu = false
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Add Product") },
+                            text = { Text("Add Member") },
                             onClick = {
                                 navController.navigate(ROUT_ADD_PRODUCT)
                                 showMenu = false
@@ -100,7 +100,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Product Name") },
+                    label = { Text(" Name") },
                     leadingIcon = { Icon(painter = painterResource(R.drawable.baseline_dynamic_feed_24), contentDescription = "Name") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -111,7 +111,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 OutlinedTextField(
                     value = price,
                     onValueChange = { price = it },
-                    label = { Text("Product Price") },
+                    label = { Text("Payment") },
                     leadingIcon = { Icon(painter = painterResource(R.drawable.baseline_architecture_24), contentDescription = "Price") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -170,7 +170,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(Color.LightGray)
                 ) {
-                    Text("Add Product", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                    Text("Add Member", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -181,28 +181,28 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     NavigationBar(
-        containerColor = Color(0xFF6F6A72),
+        containerColor = Color(0xFF1436A1),
         contentColor = Color.White
     ) {
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
-            label = { Text("Home") }
+            icon = { Icon(Icons.Default.Home, contentDescription = "Product List", tint = Color.White) },
+            label = { Text("Home",color = Color.White) }
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product") },
-            label = { Text("Add") }
+            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product", tint = Color.White) },
+            label = { Text("Add",color = Color.White) }
         )
 
 
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
-            icon = { Icon(painter = painterResource(R.drawable.profile), contentDescription = "") },
-            label = { Text("Profile") }
+            icon = { Icon(painter = painterResource(R.drawable.profile), contentDescription = "", tint = Color.White) },
+            label = { Text("Profile",color = Color.White) }
         )
     }
 }
