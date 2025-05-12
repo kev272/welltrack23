@@ -74,7 +74,7 @@ fun HomeScreen(navController: NavController) {
 //BottomBar
             bottomBar = {
                 NavigationBar(
-                    containerColor = Blue10
+                    containerColor = Color.Blue
                 ) {
                     NavigationBarItem(
                         icon = {
@@ -83,7 +83,7 @@ fun HomeScreen(navController: NavController) {
                                 contentDescription = "Home",
                             )
 
-                        },
+                        },label = { Text("Home", color = Color.White) },
 
                         selected = selectedIndex == 0,
                         onClick = {
@@ -100,7 +100,7 @@ fun HomeScreen(navController: NavController) {
 
                                 tint = Color.White
                             )
-                        },
+                        },label = { Text("Trainers", color = Color.White) },
 
                         selected = selectedIndex == 1,
                         onClick = {
@@ -123,7 +123,7 @@ fun HomeScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    painter = painterResource(R.drawable.img_19),
+                    painter = painterResource(R.drawable.welltrack),
                     contentDescription = "home",
                     modifier = Modifier.size(300.dp).clip(shape = CircleShape)
                 )
@@ -143,7 +143,7 @@ fun HomeScreen(navController: NavController) {
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFBE4A63), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF57494C), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -154,7 +154,7 @@ fun HomeScreen(navController: NavController) {
                             Image(
                                 painter = painterResource(R.drawable.img_14),
                                 contentDescription = "home",
-                                modifier = Modifier.fillMaxWidth().height(70.dp),
+                                modifier = Modifier.fillMaxWidth().height(70.dp)
                             )
                             Text(text = "Keep your health", fontSize = 15.sp, textAlign = TextAlign.Center, color = Color.White)
 
@@ -180,7 +180,7 @@ fun HomeScreen(navController: NavController) {
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFBD5375), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF6C5B61), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -193,9 +193,9 @@ fun HomeScreen(navController: NavController) {
                                 contentDescription = "home",
                                 modifier = Modifier.fillMaxWidth().height(70.dp),
                             )
-                            Text(text = "Lose Weight,Build Cofidence", fontSize = 15.sp,textAlign =TextAlign.Center)
+                            Text(text = "Lose Weight,Build Cofidence", fontSize = 15.sp,textAlign =TextAlign.Center,color = Color.White)
 
-                            Text(text = "Tread those streets like a pro", fontSize = 15.sp,textAlign = TextAlign.Center)
+                            Text(text = "Tread those streets like a pro", fontSize = 15.sp,textAlign = TextAlign.Center,color = Color.White)
 
 
                         }
@@ -217,7 +217,7 @@ fun HomeScreen(navController: NavController) {
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFCB5872), Color(0xFF0C66D3))
+                                        colors = listOf(Color(0xFF524648), Color(0xFF0C66D3))
                                     ),
 
                                     ),
@@ -230,8 +230,8 @@ fun HomeScreen(navController: NavController) {
                                 contentDescription = "home",
                                 modifier = Modifier.fillMaxWidth().height(70.dp),
                             )
-                            Text(text = "DataBase", fontSize = 15.sp, textAlign = TextAlign.Center)
-                            Text(text = "Build Your Energy,Use it in the best way", fontSize = 15.sp, textAlign = TextAlign.Center)
+                            Text(text = "DataBase", fontSize = 15.sp, textAlign = TextAlign.Center,color = Color.White)
+                            Text(text = "Build Your Energy,Use it in the best way", fontSize = 15.sp, textAlign = TextAlign.Center,color = Color.White)
 
 
                         }
@@ -269,7 +269,7 @@ fun HomeScreen(navController: NavController) {
                     .width(280.dp) // Adjust width for better appearance
                     .background(
                         brush = Brush.horizontalGradient(
-                            colors = listOf(Color(0xFF941226), Color(0xFF0072FF))
+                            colors = listOf(Color(0xFF595656), Color(0xFF0072FF))
                         ),
 
                     )// Cute pastel pink background

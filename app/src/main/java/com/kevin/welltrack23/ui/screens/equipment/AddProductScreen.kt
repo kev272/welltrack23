@@ -29,6 +29,7 @@ import com.kevin.welltrack23.navigation.ROUT_ADD_PRODUCT
 import com.kevin.welltrack23.navigation.ROUT_PRODUCT_LIST
 
 import com.kevin.welltrack23.viewmodel.ProductViewModel
+import java.util.Calendar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,7 +39,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
     var phone by remember { mutableStateOf("") }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
     var showMenu by remember { mutableStateOf(false) }
-
+    var date by remember { mutableStateOf("") }
     val context = LocalContext.current
 
     // Image Picker Launcher
@@ -124,7 +125,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 OutlinedTextField(
                     value = phone,
                     onValueChange = { phone = it },
-                    label = { Text("Phone Number") },
+                    label = { Text("Trainer's No.") },
                     leadingIcon = { Icon(painter = painterResource(R.drawable.phone), contentDescription = "Price") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -136,7 +137,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                 Box(
                     modifier = Modifier
                         .size(200.dp)
-                        .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
+                        .background(Color.Gray, shape = RoundedCornerShape(10.dp))
                         .clickable { imagePicker.launch("image/*") },
                     contentAlignment = Alignment.Center
                 ) {
@@ -157,6 +158,73 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
 
                 Spacer(modifier = Modifier.height(20.dp))
 
+                // Date and Time Picker
+
+                Row(modifier = Modifier.padding(start = 20.dp, end = 20.dp)) {
+                    Button(
+                        onClick = {
+                            val calendar = Calendar.getInstance()
+                            val year = calendar.get(Calendar.YEAR)
+                            val month = calendar.get(Calendar.MONTH)
+                            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+                            android.app.DatePickerDialog(
+                                context,
+                                { _, selectedYear, selectedMonth, selectedDay ->
+                                    val selectedDate = "${selectedDay}/${selectedMonth + 1}/${selectedYear}"
+
+                                    // TimePicker inside DatePicker callback
+                                    val hour = calendar.get(Calendar.HOUR_OF_DAY)
+                                    val minute = calendar.get(Calendar.MINUTE)
+
+                                    android.app.TimePickerDialog(
+                                        context,
+                                        { _, selectedHour, selectedMinute ->
+                                            val selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+                                            date = "$selectedDate $selectedTime"
+                                        },
+                                        hour,
+                                        minute,
+                                        true
+                                    ).show()
+                                },
+                                year,
+                                month,
+                                day
+                            ).show()
+                        },
+                        shape = RoundedCornerShape(10.dp),
+                        colors = ButtonDefaults.buttonColors(Color.Gray),
+                        modifier = Modifier
+                            .height(65.dp)
+                            .padding(top = 10.dp)
+                    ) {
+                        Text(text = "End of Membership")
+                    }
+
+                    Spacer(modifier = Modifier.width(20.dp))
+
+                    OutlinedTextField(
+                        value = date,
+                        onValueChange = { /* No-op */ },
+                        label = { Text("") },
+                        readOnly = true,
+                        modifier = Modifier
+                            .padding(bottom = 16.dp)
+                            .width(250.dp),
+                        trailingIcon = {
+                            Text(text = "")
+                        },
+                        singleLine = true
+                    )
+
+                }
+
+
+
+                //End of a datefield
+
+
                 // Add Product Button
                 Button(
                     onClick = {
@@ -164,7 +232,9 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                         if (priceValue != null) {
                             imageUri?.toString()?.let { viewModel.addProduct(name, priceValue, phone,it) }
                             navController.popBackStack()
-                        }
+
+                        }else{navController.navigate(ROUT_PRODUCT_LIST)}
+
                     },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
@@ -188,7 +258,7 @@ fun BottomNavigationBar(navController: NavController) {
             selected = false,
             onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
             icon = { Icon(Icons.Default.Home, contentDescription = "Product List", tint = Color.White) },
-            label = { Text("Home",color = Color.White) }
+            label = { Text("Members",color = Color.White) }
         )
         NavigationBarItem(
             selected = false,
@@ -200,7 +270,7 @@ fun BottomNavigationBar(navController: NavController) {
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(ROUT_ADD_PRODUCT) },
+            onClick = { navController.navigate(ROUT_PRODUCT_LIST) },
             icon = { Icon(painter = painterResource(R.drawable.profile), contentDescription = "", tint = Color.White) },
             label = { Text("Profile",color = Color.White) }
         )

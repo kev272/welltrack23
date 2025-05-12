@@ -93,29 +93,22 @@ fun UploadTaskScreen(
                 containerColor = Color.LightGray
             ){
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    label = { Text("Home") },
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White) },
+                    label = { Text("Home", color = Color.White) },
                     selected = selectedIndex == 0,
                     onClick = { selectedIndex = 0
                        navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.ThumbUp, contentDescription = "Trainers") },
-                    label = { Text("Favorites") },
+                    icon = { Icon(Icons.Default.ThumbUp, contentDescription = "Trainers", tint = Color.White) },
+                    label = { Text("Trainers", color = Color.White) },
                     selected = selectedIndex == 1,
                     onClick = { selectedIndex = 1
                         navController.navigate(ROUT_ABOUT)
                     }
                 )
-                NavigationBarItem(
-                    icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
-                    selected = selectedIndex == 2,
-                    onClick = { selectedIndex = 2
-                         navController.navigate(ROUT_PRODUCT_LIST)
-                    }
-                )
+
 
             }
         },

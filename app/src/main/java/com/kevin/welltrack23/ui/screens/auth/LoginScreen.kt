@@ -29,6 +29,7 @@ import com.kevin.welltrack23.R
 import com.kevin.welltrack23.navigation.ROUT_ADD_PRODUCT
 import com.kevin.welltrack23.navigation.ROUT_PRODUCT_LIST
 import com.kevin.welltrack23.navigation.ROUT_REGISTER
+import com.kevin.welltrack23.navigation.ROUT_VIEW_TASK
 import com.kevin.welltrack23.viewmodel.AuthViewModel
 
 @Composable
@@ -52,7 +53,7 @@ fun LoginScreen(
                     navController.navigate(ROUT_ADD_PRODUCT) {
                     }
                 } else {
-                    navController.navigate(ROUT_PRODUCT_LIST) {
+                    navController.navigate(ROUT_VIEW_TASK) {
                     }
                 }
             }
@@ -63,7 +64,8 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .padding(20.dp)
+            ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -84,7 +84,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
                             onDismissRequest = { showMenu = false }
                         ) {
                             DropdownMenuItem(
-                                text = { Text("Product List") },
+                                text = { Text("Members List") },
                                 onClick = {
                                     navController.navigate(ROUT_PRODUCT_LIST)
                                     showMenu = false
@@ -201,10 +201,12 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     color = Color.White
                 )
                 Text(
-                    text = "Price: Ksh${product.price}",
+                    text = "Payment: Ksh${product.price}",
                     fontSize = 16.sp,
                     color = Color.White
                 )
+
+
             }
 
             // Buttons (Message, Edit, Delete, Download PDF)
@@ -222,7 +224,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         onClick = {
                             val smsIntent = Intent(Intent.ACTION_SENDTO)
                             smsIntent.data = "smsto:${product.phone}".toUri()
-                            smsIntent.putExtra("sms_body", "Hello Seller,...?")
+                            smsIntent.putExtra("sms_body", "Hello,...?")
                             context.startActivity(smsIntent)
                         },
                         shape = RoundedCornerShape(8.dp),
@@ -230,11 +232,12 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         Row {
                             Icon(
                                 imageVector = Icons.Default.Send,
-                                contentDescription = "Message Seller"
+                                contentDescription = "Message Trainer"
                             )
                             Spacer(modifier = Modifier.width(3.dp))
-                            Text(text = "Message Seller")
+                            Text(text = "Message Trainer")
                         }
+
                     }
 
                     // Edit Product
@@ -268,7 +271,8 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         Icon(
                             painter = painterResource(R.drawable.baseline_file_download_24),
                             contentDescription = "",
-                            tint = Color.White
+                            tint = Color.White,
+                            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
                         )
                     }
                 }
@@ -304,13 +308,13 @@ fun generateProductPDF(context: Context, product: Product) {
 
     paint.textSize = 16f
     paint.isFakeBoldText = true
-    canvas.drawText("Product Details", 80f, 200f, paint)
+    canvas.drawText("Member Details", 80f, 200f, paint)
 
     paint.textSize = 12f
     paint.isFakeBoldText = false
     canvas.drawText("Name: ${product.name}", 50f, 230f, paint)
-    canvas.drawText("Price: Ksh${product.price}", 50f, 250f, paint)
-    canvas.drawText("Seller Phone: ${product.phone}", 50f, 270f, paint)
+    canvas.drawText("Payment: Ksh${product.price}", 50f, 250f, paint)
+    canvas.drawText("Trainers Phone: ${product.phone}", 50f, 270f, paint)
 
     pdfDocument.finishPage(page)
 

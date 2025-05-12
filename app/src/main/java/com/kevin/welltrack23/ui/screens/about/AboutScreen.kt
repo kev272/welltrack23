@@ -72,6 +72,7 @@ import com.kevin.welltrack23.navigation.ROUT_VIEW_TASK
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(navController: NavController){
@@ -97,7 +98,7 @@ fun AboutScreen(navController: NavController){
             },
             modifier = Modifier.background(
                 brush = Brush.horizontalGradient(
-                    colors = listOf(Color(0xFF101262), Color(0xFFEFF2F6))
+                    colors = listOf(Color(0xFF070BDC), Color(0xFF5A5E64))
                 ),
 
                 ),
@@ -112,7 +113,7 @@ fun AboutScreen(navController: NavController){
                                 Icons.Default.Home,
                                 contentDescription = "Home", tint = Color.White
                             )
-                        },
+                        },label = { Text("Home", color = Color.White) },
 
                         selected = selectedIndex == 0,
                         onClick = {
@@ -124,15 +125,21 @@ fun AboutScreen(navController: NavController){
                     NavigationBarItem(
                         icon = {
                             androidx.compose.material3.Icon(
-                                Icons.Default.AccountCircle,
+                                Icons.Default.List,
                                 contentDescription = "Info", tint = Color.White
                             )
-                        },
+                        },label = { Text("Login", color = Color.White) },
 
                         selected = selectedIndex == 1,
                         onClick = {
-                            selectedIndex = 1
-                            navController.navigate(ROUT_VIEW_TASK)
+
+
+                                selectedIndex = 1
+                                navController.navigate(ROUT_VIEW_TASK)
+
+                                // Handle the case where the user is not logged in
+                                navController.navigate(ROUT_LOGIN) // Navigate to the login screen or show a toast/snackbar
+
                         }
                     )
 
@@ -166,7 +173,7 @@ fun AboutScreen(navController: NavController){
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFF1E6E7), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF595253), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -208,7 +215,7 @@ fun AboutScreen(navController: NavController){
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFF6F2F3), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF6B6566), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -247,7 +254,7 @@ fun AboutScreen(navController: NavController){
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFF3F1F1), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF706868), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -294,7 +301,7 @@ fun AboutScreen(navController: NavController){
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFF1E6E7), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF8F8989), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -333,7 +340,7 @@ fun AboutScreen(navController: NavController){
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFF6F2F3), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF9D9597), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -372,7 +379,7 @@ fun AboutScreen(navController: NavController){
                                 .fillMaxSize()
                                 .background(
                                     brush = Brush.horizontalGradient(
-                                        colors = listOf(Color(0xFFF3F1F1), Color(0xFF0072FF))
+                                        colors = listOf(Color(0xFF8F8989), Color(0xFF0072FF))
                                     ),
 
                                     ),
@@ -424,7 +431,7 @@ fun AboutScreen(navController: NavController){
                     .width(280.dp) // Adjust width for better appearance
                     .background(
                         brush = Brush.horizontalGradient(
-                            colors = listOf(Color(0xFF941226), Color(0xFF0072FF))
+                            colors = listOf(Color(0xFF70686C), Color(0xFF0072FF))
                         ),
 
                         )// Cute pastel pink background
@@ -500,7 +507,7 @@ fun DrawerItem(title: String, icon: ImageVector, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(icon, contentDescription = title, modifier = Modifier.size(24.dp), tint = Color(
-            0xFF9B0826
+            0xFFFAF6F7
         )
         )
         Spacer(modifier = Modifier.width(12.dp))

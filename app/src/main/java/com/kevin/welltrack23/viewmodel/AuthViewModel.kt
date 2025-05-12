@@ -4,12 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kevin.welltrack23.model.User
 import com.kevin.welltrack23.repository.UserRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class AuthViewModel(private val repository: UserRepository) : ViewModel() {
     var loggedInUser: ((User?) -> Unit)? = null
 
-    open fun registerUser(user: User) {
+    private val _isUserLoggedIn = MutableStateFlow(false)
+    val isUserLoggedIn:StateFlow<Boolean> get() = _isUserLoggedIn
+     fun registerUser(user: User) {
         viewModelScope.launch {
             repository.registerUser(user)
         }
@@ -18,7 +22,12 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
     fun loginUser(email: String, password: String) {
         viewModelScope.launch {
             val user = repository.loginUser(email, password)
-            loggedInUser?.invoke(user)
+            if (user != null) {
+                _isUserLoggedIn.value = true // Update login state
+                loggedInUser?.invoke(user)
+            } else {
+                _isUserLoggedIn.value = false
+                loggedInUser?.invoke(null)
+            }
         }
-    }
-}
+    }}
